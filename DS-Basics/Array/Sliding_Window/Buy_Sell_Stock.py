@@ -18,11 +18,10 @@ Explanation: In this case, no transactions are done and the max profit = 0.
 
 '''
 
-from ast import List
-
+from typing import List
 
 class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
+    def maxProfit1(self, prices: List[int]) -> int:
         min_profit = float('inf')
         max_profit = 0 
         for i in range(len(prices)):
@@ -32,3 +31,16 @@ class Solution:
             if temp_values >= max_profit:
                 max_profit = temp_values 
         return max_profit
+    
+    def maxProfit2(self, prices: List[int]) -> int:
+        min_profit = prices[0]
+        max_profit = 0
+        for price in prices:
+            if price < min_profit:
+                min_profit = price
+            max_profit = max(max_profit, price - min_profit)
+        return max_profit
+
+if __name__ == "__main__":
+    print(Solution().maxProfit1([7,1,5,3,6,4]))
+    print(Solution().maxProfit2([7,1,5,3,6,4]))
