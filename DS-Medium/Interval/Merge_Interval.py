@@ -15,4 +15,15 @@ Explanation: Intervals [1,4] and [4,5] are considered overlapping.
 from typing import List
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        pass
+        intervals.sort(key = lambda x : x[0]) #sorting by start interval
+        output = [intervals[0]]
+        for start, end in intervals[1:]:
+            lastEnd = output[-1][1]
+            if start <= lastEnd:
+                output[-1][1] = max(lastEnd, end)
+                continue
+            output.append([start,end])
+        return output
+if __name__ == "__main__":
+    input = [[1,3],[15,18],[2,6],[8,10]]
+    print(Solution().merge(input))
