@@ -5,6 +5,7 @@ Output: [5,4,3,2,1]
 """
 from typing import Optional
 
+# Technique : Adding Dummy Node and Using Space
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
